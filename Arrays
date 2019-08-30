@@ -34,6 +34,7 @@ int main()
 	//size will be pointer size=4 or 8
 	
 	int* e[3];
+	//used for 2d array
 	//size will pointer size*3=24 
 	//its called array of pointers as it stores addresses in each index
 	e[0] = &b[0];

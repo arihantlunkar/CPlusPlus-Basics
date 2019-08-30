@@ -1,0 +1,85 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+	int a[2][2]; 
+	//allocates memory on stack ... 
+	//its memory will be deleted when it goes out of scope
+	//size will be 2*2*4 = 16
+	
+	a[0][0] = 5;
+	a[1][0] = 10;
+	a[0][1] = 15;
+	a[1][1] = 20;
+	
+	int b[2][2] = {{11, 22}, {33, 44}};
+	//size will be 2*2*4 = 16
+	
+	int** c = new int*; 
+	//int** c = new int* -> its called pointer to (integer pointer)
+	//allocates memory on heap
+	//int d[] = new int[2][2] -> doesn't work in c++
+	//pointer size depend on bit size computer .. 32 bit 4 bytes, 84 bits 8 bytes
+	//size will be pointer size=4 or 8
+	
+	int** d = (int**) malloc(2*sizeof(int*));
+	//size will be pointer size=4 or 8
+	
+	int* e[2];
+	//size will pointer size*2=16 
+	//its called array of pointers as it stores addresses in each index
+	e[0] = &b[0][0];
+	e[1] = &b[1][0];
+	
+	printf("%d,%d,%d,%d,%d\n", sizeof(a), sizeof(b), sizeof(c), sizeof(d), sizeof(e));
+	
+	for(int i=0;i<2;++i)
+	{
+		c[i] = new int;
+		*(d+i) = (int*) malloc(2*sizeof(int));
+		for(int j=0;j<2;++j)
+		{
+			c[i][j] = i*j;
+			*(*(d+i)+j) = 5+(i*j);
+		}
+	}
+	
+	
+	
+	for(int i=0;i<2;++i)
+	{
+		for(int j=0;j<2;++j)
+		{
+			printf("%d ", c[i][j]);
+		}
+		printf("\n");
+	}
+	
+	for(int i=0;i<2;++i)
+	{
+		for(int j=0;j<2;++j)
+		{
+			printf("%d ", d[i][j]);
+		}
+		printf("\n");
+	}
+	
+	for(int i=0;i<2;++i)
+	{
+		for(int j=0;j<2;++j)
+		{
+			printf("%d ", e[i][j]);
+		}
+		printf("\n");
+	}
+	
+	for(int i=0;i<2;++i)
+	{
+		delete c[i];
+		free(d[i]);
+	}
+	
+	return (0);
+}

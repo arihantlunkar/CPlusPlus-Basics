@@ -1,0 +1,50 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main()
+{
+	char arr1[8];
+	for(int i=0;i<sizeof(arr1)/sizeof(char);++i)
+	{
+		arr1[i] = (char)(65+i);
+	}
+	arr1[7] = '\0';
+	
+	const char arr2[8] = {'A','R','I','H','A','N','T','\0'};
+	
+	const char arr3[] = "Arihant";
+	
+	const char* arr4 = "abcdef";
+	
+	char * arr5 = (char*)malloc(8*sizeof(char));
+	
+	arr5 = &arr1[0];
+	
+	printf("%s,%s,%d,%s,%s,%s,%c\n",arr1,arr2,sizeof(arr1),arr3,arr4,arr5,*(arr4+3));
+	
+	const char* arr6[3] = {"Arihant", "ABCDEF", "XYZEF"};
+	
+	for(int i=0;i<3;++i)
+	{
+		printf("%s\n", arr6[i]);
+	}
+	
+	const char arr7[3][4] = {{'A','R','\0'},{'I','H','\0'},{'A','N','T','\0'}};
+	for(int i=0;i<3;++i)
+	{
+		printf("%s\n", arr7[i]);
+	}
+	
+	strcpy(arr5, arr4);
+	
+	string a1;
+	a1 = "A";
+	string a2 = "BC";
+	string a3 = a1 + a2;
+	string a4(arr5);
+	
+	printf("%s,%s,%s,%s,%s\n",a1.c_str(),a2.c_str(),a3.c_str(),arr4,a4.c_str());
+	
+	return (0);
+}

@@ -1,0 +1,60 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int* test()
+{
+	int a = 5555;
+	return &a; 
+}
+
+int main()
+{
+	int a[3]; 
+	//allocates memory on stack ... 
+	//its memory will be deleted when it goes out of scope
+	//size will be 3*4 = 12
+	
+	a[0] = 5;
+	a[1] = 10;
+	a[2] = 15;
+	
+	int b[] = {1, 2, 3};
+	//size will be 3*4 = 12
+	
+	int* c = new int; 
+	//int* c = new int -> its called pointer to integer
+	//c = &b[0]; -> its called pointer to integer array/array of integers
+	//allocates memory on heap
+	//int d[] = new int[3] -> doesn't work in c++
+	//pointer size depend on bit size computer .. 32 bit 4 bytes, 84 bits 8 bytes
+	//size will be pointer size=4 or 8
+		
+	int* d = (int*) malloc(3*sizeof(int));
+	//size will be pointer size=4 or 8
+	
+	int* e[3];
+	//size will pointer size*3=24 
+	//its called array of pointers as it stores addresses in each index
+	e[0] = &b[0];
+	e[1] = &b[1];
+	e[2] = &b[2];
+	
+	printf("%d,%d,%d,%d,%d\n", sizeof(a), sizeof(b), sizeof(c), sizeof(d), sizeof(e));
+	
+	for(int i=0;i<3;++i)
+	{
+		c[i] = 7*i; 
+		//not exactly an array but since i is incrementing continuously it becomes array eventually 
+		
+		d[i] = 8*i; 
+		printf("%d,%d,%d,%d,%d\n", a[i],b[i],*(c+i), d[i], *e[i]);
+	}
+	
+	delete c;
+	free(d);
+
+	//printf("test() %d\n",*test()); 
+	// run time error because accessing stack memory which is out of scope
+	return (0);
+}

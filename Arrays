@@ -47,12 +47,22 @@ int main()
 		c[i] = 7*i; 
 		//not exactly an array but since i is incrementing continuously it becomes array eventually 
 		
-		d[i] = 8*i; 
+		*(d+i) = 8*i; 
 		printf("%d,%d,%d,%d,%d\n", a[i],b[i],*(c+i), d[i], *e[i]);
 	}
 	
+	
+	const int* ptr1 = c;
+	int * const ptr2 = c;
+	
+	//*ptr1 = 2; // not allowed as 'const int', value cannot be changed
+	ptr1 = d;
+	//ptr2 = d; // not allowed as 'const ptr2', pointer address cannot be changed
+	*ptr2 = 3;
+	
 	delete c;
 	free(d);
+	
 
 	//printf("test() %d\n",*test()); 
 	// run time error because accessing stack memory which is out of scope

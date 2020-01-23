@@ -24,7 +24,14 @@ int main()
     {
         *(d+i) = b[i];
     }
-        
+    
+    //fifth way
+    int* m = new int;
+    for(int i=0;i<3;++i)
+	{
+        m[i] = i*7; //since i is incrementing continuously it becomes array eventually 
+        printf("%d",m[i]);
+	}
     //print c
     for(unsigned int i=0;i<sizeof(a)/sizeof(int);++i)
     {

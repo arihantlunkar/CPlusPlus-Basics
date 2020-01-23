@@ -16,10 +16,10 @@ int main()
     int b[5] = {1,2,3,4,5}; //or int b[] = {1,2,3}; also fine
     
     //third way
-    int* c = &a[0]; //pointer to integer
+    int* c = &a[0]; //pointer to integer array
     
     //fourth way
-    int* d = (int*)malloc(sizeof(b));  //pointer to integer
+    int* d = (int*)malloc(sizeof(b));  //pointer to integer array
     for(unsigned int i=0;i<sizeof(b)/sizeof(int);++i)
     {
         *(d+i) = b[i];

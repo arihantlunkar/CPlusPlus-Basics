@@ -28,10 +28,12 @@ int main()
     //fifth way
     int* m = new int;
     for(int i=0;i<3;++i)
-	{
+    {
         m[i] = i*7; //since i is incrementing continuously it becomes array eventually 
-        printf("%d",m[i]);
-	}
+        printf("%d ",m[i]);
+    }
+    printf("\n");
+	
     //print c
     for(unsigned int i=0;i<sizeof(a)/sizeof(int);++i)
     {
@@ -80,7 +82,7 @@ int main()
     
     //fifth way
     int (*k)[3]; //pointer to integer array
-    k = &f[0];
+    k = f;
     
     //print g
     for (unsigned int i=0; i<sizeof(e)/sizeof(e[0]); ++i) 
